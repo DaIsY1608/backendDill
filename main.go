@@ -1,8 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
-	fmt.Println("Hello")
+	r := gin.Default()
+	r.POST("/register")
+	r.POST("/list")
+
+	r.Run(":2020")
 
 }
