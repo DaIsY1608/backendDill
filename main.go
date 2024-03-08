@@ -1,8 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"dilya/collab/controllers"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
-	fmt.Println("Hello")
+	router := gin.Default()
 
+	router.POST("/api/users/add", controllers.AddUser)
+
+	router.Run(":4004")
 }
