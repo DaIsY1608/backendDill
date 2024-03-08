@@ -27,3 +27,26 @@ func AddUser(c *gin.Context) {
 		})
 	}
 }
+
+func DeleteUser(c *gin.Context) {
+	var shbDelete models.DeleteUser
+	c.ShouldBind(&shbDelete)
+
+	var isExist bool = false
+
+	for i, v := range data.UsersSlice {
+		if shbDelete.Name == "" {
+			c.JSON(404, "Empty!")
+		} else if shbDelete.Name == v.Name {
+			data.UsersSlice = append(data.UsersSlice[:i], data.UsersSlice[i+1:]...)
+			c.JSON(200, "Course deleted!")
+			fmt.Println(data.UsersSlice)
+		} else {
+			isExist = true
+		}
+	}
+	if isExist {
+		c.JSON(404, "No such User exists!")
+	}
+
+}
