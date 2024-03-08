@@ -1,14 +1,14 @@
 package main
 
 import (
+	"dilya/collab/controllers"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
-	r.POST("/register")
-	r.POST("/list")
-	r.POST("/delete", )
-	r.Run(":2020")
+	router := gin.Default()
 
+	router.POST("/api/users/add", controllers.AddUser)
+
+	router.Run(":4004")
 }
